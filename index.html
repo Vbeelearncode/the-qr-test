@@ -4,10 +4,72 @@
     <script defer data-domain="vbeelearncode.github.io/the-qr-test" src="https://plausible.io/js/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Visitor Counter</title>
+    <title>QR Code Awareness</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #warning-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .warning-text, .additional-info {
+            font-size: 1.5em;
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .visible {
+            opacity: 1;
+        }
+        @media (max-width: 600px) {
+            .warning-text, .additional-info {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    
+    <div id="warning-container">
+        <div class="warning-text">Attention!</div>
+        <div class="warning-text">Be cautious when scanning QR codes.</div>
+        <div class="warning-text">Some may not be safe.</div>
+        <div class="additional-info">This QR code is part of an initiative.</div>
+        <div class="additional-info">It promotes awareness about the risks of scanning unknown QR codes.</div>
+        <div class="additional-info">Please leave this QR code here.</div>
+        <div class="additional-info">This helps others become aware of this issue.</div>
+        <div class="additional-info">Stay safe! ♥</div>
+    </div>
+
+    <script>
+        const texts = document.querySelectorAll('.warning-text, .additional-info');
+        let index = 0;
+
+        function showText() {
+            if (index < texts.length) {
+                texts[index].classList.add('visible');
+                index++;
+                setTimeout(showText, 1538); // Show each line every 1.538 seconds (2000 / 1.3)
+            }
+        }
+
+        showText();
+    </script>
 </body>
 </html>
